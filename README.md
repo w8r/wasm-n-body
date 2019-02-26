@@ -15,7 +15,7 @@ $> npm install
 Now, to build [assembly/index.ts](./assembly/index.ts) to an untouched and an optimized `.wasm` including their respective `.wat` representations, run:
 
 ```
-$> npm run asbuild
+$> npm run build
 ```
 
 Afterwards, run `npm run server` to start a <a href="http://localhost:9080">local server</a>. Should also automatically launch a browser.
@@ -23,25 +23,43 @@ Afterwards, run `npm run server` to start a <a href="http://localhost:9080">loca
 To run the benchmark:
 
 ```
-$> npm run test [steps=1000000]
+$> npm run test [1000]
 ```
 
 Benchmark
 =========
 
 ***Environment:***
-- MacBook Pro (Retina, 15-inch, Late 2013)
-- macOS 10.14.3
-- node.js v11.9.0
-- rustc 1.33.0-nightly (ceb251214 2019-01-16)
+- MacBook Pro (Retina, 13-inch, Late 2017)
+- macOS 10.13.6
+- node.js v10.15.1
+- rustc 1.33.0-beta.10
 
-***Results:***
+***Results: 1000 steps, 1000 bodies, 2D ***
 
-|        Target           |  Time, ***ms*** | Size, ***KB*** |
-|-------------------------|-----------------|----------------|
-| **AssemblyScript WASM** | **2901**        | **2**          |
-| AssemblyScript ASMJS    | 3720            | 19*            |
-| JavaScript              | 2716            | 5*             |
-| Rust WASM               | 2883            | 13             |
+```
+COLD SERIES:
+
+Performing 1000 steps (AssemblyScript WASM) ...
+Took 2932.2897430000003ms
+Performing 1000 steps (AssemblyScript ASMJS) ...
+Took 3862.352643ms
+Performing 1000 steps (JS) ...
+Took 2912.77102ms
+Performing 1000 steps (Rust WASM) ...
+Took 3096.005317ms
+
+WARMED UP SERIES:
+
+Performing 1000 steps (AssemblyScript WASM) ...
+Took 3037.334141ms
+Performing 1000 steps (AssemblyScript ASMJS) ...
+Took 4032.277231ms
+Performing 1000 steps (JS) ...
+Took 3043.310233ms
+Performing 1000 steps (Rust WASM) ...
+Took 3340.9384410000002ms
+
+```
 
 ___* unminified___
