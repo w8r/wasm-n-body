@@ -201,7 +201,7 @@ function init() {
     let m = 5;
     let add = 1.0;
     for (let i = 0; i < N_BODIES; i++) {
-        bodyArr[i] = new Point(ox, ox, 0, 0, m);
+        bodyArr[i] = new Point(ox, oy, 0, 0, m);
         if (i % 10 === 0) {
             oy += 10;
             ox = 0;
@@ -216,9 +216,15 @@ function step() {
     return system.energy();
 }
 exports.step = step;
+function e() {
+    return system.energy();
+}
+exports.e = e;
 function bench(steps) {
+    //log(`${system.energy()}`);
     for (let i = 0; i < steps; ++i)
         system.advance(0.01);
+    //log(`${system.energy()}`);
 }
 exports.bench = bench;
 function getBody(index) {

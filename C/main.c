@@ -19,7 +19,7 @@ struct Graph {
 };
 
 static struct Graph G;
-static int N = 10;
+static int N = 1000;
 
 #ifdef __cplusplus
 extern "C" {
@@ -109,7 +109,7 @@ void EMSCRIPTEN_KEEPALIVE bench(int steps) {
     advance(&G, 0.01);
     //printf("%d\n", i);
   }
-  printf("energy %f\n", energy(&G));
+  //printf("energy %f\n", energy(&G));
 }
 
 

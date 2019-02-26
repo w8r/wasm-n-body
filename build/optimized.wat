@@ -23,6 +23,7 @@
  (export "table" (table $0))
  (export "init" (func $assembly/index/init))
  (export "step" (func $assembly/index/step))
+ (export "e" (func $assembly/index/e))
  (export "bench" (func $assembly/index/bench))
  (export "getBody" (func $assembly/index/getBody))
  (start $start)
@@ -355,6 +356,21 @@
   i32.const 40
   call $~lib/allocator/arena/__memory_allocate
   local.tee $2
+  f64.const 0
+  f64.store
+  local.get $2
+  f64.const 0
+  f64.store offset=8
+  local.get $2
+  f64.const 0
+  f64.store offset=16
+  local.get $2
+  f64.const 0
+  f64.store offset=24
+  local.get $2
+  f64.const 0
+  f64.store offset=32
+  local.get $2
   local.get $0
   f64.store
   local.get $2
@@ -1587,7 +1603,7 @@
     local.get $2
     local.get $0
     local.get $1
-    local.get $1
+    local.get $3
     call $assembly/index/Point#constructor
     call $~lib/array/Array<Point>#__set
     local.get $0
@@ -1934,7 +1950,11 @@
   global.get $assembly/index/system
   call $assembly/index/System#energy
  )
- (func $assembly/index/bench (; 14 ;) (type $i_) (param $0 i32)
+ (func $assembly/index/e (; 14 ;) (type $F) (result f64)
+  global.get $assembly/index/system
+  call $assembly/index/System#energy
+ )
+ (func $assembly/index/bench (; 15 ;) (type $i_) (param $0 i32)
   (local $1 i32)
   block $break|0
    loop $repeat|0
@@ -1956,7 +1976,7 @@
    unreachable
   end
  )
- (func $assembly/index/getBody (; 15 ;) (type $ii) (param $0 i32) (result i32)
+ (func $assembly/index/getBody (; 16 ;) (type $ii) (param $0 i32) (result i32)
   (local $1 i32)
   local.get $0
   global.get $assembly/index/system
@@ -1987,13 +2007,13 @@
    i32.const 0
   end
  )
- (func $start (; 16 ;) (type $_)
+ (func $start (; 17 ;) (type $_)
   i32.const 40
   global.set $~lib/allocator/arena/startOffset
   global.get $~lib/allocator/arena/startOffset
   global.set $~lib/allocator/arena/offset
  )
- (func $null (; 17 ;) (type $_)
+ (func $null (; 18 ;) (type $_)
   nop
  )
 )

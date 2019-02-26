@@ -1,5 +1,7 @@
 import "allocator/arena";
 
+declare function log(s:string):void;
+
 // From The Computer Language Benchmarks Game
 // http://benchmarksgame.alioth.debian.org
 
@@ -10,12 +12,18 @@ const DAYS_PER_YEAR: float = 365.24;
 const N_BODIES:u32 = 1000;
 
 class Point {
-  constructor (
-    public x: float,
-    public y: float,
-    public vx: float,
-    public vy: float,
-    public mass: float) {}
+  public x: float;
+  public y: float;
+  public vx: float;
+  public vy: float;
+  public mass: float;
+  constructor (x:float, y: float, vx: float, vy:float, mass: float) {
+    this.x = x;
+    this.y = y;
+    this.vx = vx;
+    this.vy = vy;
+    this.mass = mass;
+  }
 
   offset (px: float, py: float): this {
     this.vx = -px / this.mass;
@@ -299,7 +307,7 @@ export function init(): void {
   let m:float = 5;
   let add:float = 1.0;
   for (let i:u32 = 0; i < N_BODIES; i++) {
-    bodyArr[i] = new Point(ox, ox, 0, 0, m);
+    bodyArr[i] = new Point(ox, oy, 0, 0, m);
     if (i % 10 === 0) {
       oy += 10; ox = 0;
     }
@@ -313,8 +321,14 @@ export function step(): float {
   return system.energy();
 }
 
+export function e ():float {
+  return system.energy();
+}
+
 export function bench(steps: u32): void {
+  //log(`${system.energy()}`);
   for (let i: u32 = 0; i < steps; ++i) system.advance(0.01);
+  //log(`${system.energy()}`);
 }
 
 export function getBody(index: i32): Point | null {

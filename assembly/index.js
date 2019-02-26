@@ -10,7 +10,8 @@ const imports = {
     memory: new WebAssembly.Memory({ initial: 10 }),
     abort: (filename, line, column) => {
       throw Error("abort called at " + line + ":" + colum);
-    }
+    },
+    log: (s) => console.log(s)
   }
 };
 
