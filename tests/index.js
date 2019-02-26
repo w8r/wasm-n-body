@@ -3,6 +3,7 @@ const fs = require("fs");
 // Load WASM version
 const nbodyAS = require("../assembly/index.js");
 const nbodyRS = require("../rust/index.js");
+require('../C/c.js')((nbodyC) => {
 
 // Load ASMJS version
 var src = fs.readFileSync(__dirname + "/../build/index.asm.js", "utf8")
@@ -67,6 +68,9 @@ function epilogue(time) {
 
 console.log("\nCOLD SERIES:\n");
 
+prologue("C WASM", steps);
+epilogue(test(nbodyC, steps));
+
 prologue("AssemblyScript WASM", steps);
 epilogue(test(nbodyAS, steps));
 
@@ -78,6 +82,7 @@ epilogue(test(nbodyJS, steps));
 
 prologue("Rust WASM", steps);
 epilogue(test(nbodyRS, steps));
+
 
 console.log("\nWARMED UP SERIES:\n");
 sleep(1000);
@@ -93,3 +98,4 @@ epilogue(test(nbodyJS, steps));
 
 prologue("Rust WASM", steps);
 epilogue(test(nbodyRS, steps));
+});
