@@ -1,0 +1,23 @@
+{
+  "name": "@assemblyscript/n-body-example",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "asbuild:untouched": "asc assembly/index.ts -b build/untouched.wasm -t build/untouched.wat --sourceMap --debug --validate --importMemory",
+    "asbuild:optimized": "asc assembly/index.ts -b build/optimized.wasm -t build/optimized.wat -O3 --validate --noAssert --importMemory",
+    "asbuild:asmjs": "asc assembly/index.ts -a build/index.asm.js -O3 --validate --noAssert",
+    "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized && npm run asbuild:asmjs",
+    "tsbuild": "tsc -p assembly -t ES2017 -m commonjs --outDir build",
+    "rustbuild": "cd rust && cargo build --target=wasm32-unknown-unknown --release && cp target/wasm32-unknown-unknown/release/rust_nbody.wasm ../build/rust.wasm",
+    "clean-asm": "sed -i '' 1d build/index.asm.js ",
+    "build": "npm run asbuild && npm run tsbuild && npm run rustbuild && npm run clean-asm",
+    "server": "http-server . -o -c-1",
+    "test": "node --noliftoff --nowasm-tier-up --wasm-lazy-compilation --wasm-no-bounds-checks --expose-gc tests"
+  },
+  "devDependencies": {
+    "assemblyscript": "github:AssemblyScript/assemblyscript",
+    "http-server": "^0.11.1",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {}
+}
