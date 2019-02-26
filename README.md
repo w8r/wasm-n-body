@@ -35,7 +35,8 @@ Benchmark
 - node.js v10.15.1
 - rustc 1.33.0-beta.10
 
-***Results: 1000 steps, 1000 bodies, 2D ***
+
+***Results: 1000 steps, 1000 bodies, 2D***
 
 ```
 COLD SERIES:
