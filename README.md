@@ -14,16 +14,21 @@ $> npm install
 
 Now, to build [assembly/index.ts](./assembly/index.ts) to an untouched and an optimized `.wasm` including their respective `.wat` representations, run:
 
+You will need emscripten installed on your machine (for C &rarr; WASM)
 ```
 $> npm run build
 ```
 
-Afterwards, run `npm run server` to start a <a href="http://localhost:9080">local server</a>. Should also automatically launch a browser.
-
 To run the benchmark:
 
 ```
-$> npm run test [1000]
+$> npm run test
+```
+
+To run the native test benchmark (optimized C agains nodejs)
+
+```
+$> npm run testnative
 ```
 
 Benchmark

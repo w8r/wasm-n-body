@@ -58,11 +58,9 @@ require('../C/c.js')((nbodyC) => {
 
   function testSpecial(nbody, steps) {
     nbody.init();
-    console.log(nbody.e());
     var start = process.hrtime();
     nbody.bench(steps);
     let t = process.hrtime(start);
-    console.log(nbody.e());
     gcCollect();
     return t;
   }

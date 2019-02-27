@@ -1,11 +1,10 @@
-const wasm = require('./nbody');
+const wasm = require('./nbody.js');
 
 module.exports = (cb) => {
-  wasm.addOnPostRun(() => {
-    cb({
-      init: wasm._init,
-      bench: wasm._bench,
-      step: wasm._step
-    });
-  });
+  wasm()
+    .then((exports) => cb({
+      init: exports._init,
+      bench: exports._bench,
+      step: exports._step
+    }));
 };

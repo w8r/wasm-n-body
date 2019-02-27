@@ -1,7 +1,5 @@
 import "allocator/arena";
 
-declare function log(s:string):void;
-
 // From The Computer Language Benchmarks Game
 // http://benchmarksgame.alioth.debian.org
 
