@@ -3,6 +3,7 @@ const fs = require("fs");
 // Load WASM version
 const nbodyAS = require("../assembly/index.js");
 const nbodyRS = require("../rust/index.js");
+
 require('../C/c.js')((nbodyC) => {
 
   // Load ASMJS version
@@ -37,7 +38,6 @@ require('../C/c.js')((nbodyC) => {
 
   function gcCollect() {
     if (global.gc) {
-      global.gc();
       global.gc();
     }
   }

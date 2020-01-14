@@ -1,14 +1,14 @@
 (module
  (type $_ (func))
+ (type $F (func (result f64)))
  (type $iii (func (param i32 i32) (result i32)))
  (type $iiii_ (func (param i32 i32 i32 i32)))
  (type $ii (func (param i32) (result i32)))
  (type $iii_ (func (param i32 i32 i32)))
  (type $iFFFFFi (func (param i32 f64 f64 f64 f64 f64) (result i32)))
  (type $i_ (func (param i32)))
- (type $F (func (result f64)))
- (type $iFi (func (param i32 f64) (result i32)))
  (type $iF (func (param i32) (result f64)))
+ (type $iFi (func (param i32 f64) (result i32)))
  (import "env" "memory" (memory $0 1))
  (data (i32.const 8) "\0d\00\00\00~\00l\00i\00b\00/\00a\00r\00r\00a\00y\00.\00t\00s\00")
  (data (i32.const 40) "\1c\00\00\00~\00l\00i\00b\00/\00i\00n\00t\00e\00r\00n\00a\00l\00/\00a\00r\00r\00a\00y\00b\00u\00f\00f\00e\00r\00.\00t\00s\00")
@@ -2147,7 +2147,183 @@
   i32.store
   local.get $0
  )
- (func $assembly/index/init (; 16 ;) (type $_)
+ (func $~lib/array/Array<Point>#__get (; 16 ;) (type $iii) (param $0 i32) (param $1 i32) (result i32)
+  (local $2 i32)
+  (local $3 i32)
+  (local $4 i32)
+  (local $5 i32)
+  local.get $0
+  i32.load
+  local.set $2
+  local.get $1
+  local.get $2
+  i32.load
+  i32.const 2
+  i32.shr_u
+  i32.lt_u
+  if (result i32)
+   local.get $2
+   local.set $3
+   local.get $1
+   local.set $4
+   i32.const 0
+   local.set $5
+   local.get $3
+   local.get $4
+   i32.const 2
+   i32.shl
+   i32.add
+   local.get $5
+   i32.add
+   i32.load offset=8
+  else   
+   unreachable
+  end
+ )
+ (func $assembly/index/System#energy (; 17 ;) (type $iF) (param $0 i32) (result f64)
+  (local $1 f64)
+  (local $2 i32)
+  (local $3 i32)
+  (local $4 i32)
+  (local $5 i32)
+  (local $6 f64)
+  (local $7 f64)
+  (local $8 f64)
+  (local $9 f64)
+  (local $10 f64)
+  (local $11 i32)
+  (local $12 i32)
+  (local $13 f64)
+  (local $14 f64)
+  (local $15 f64)
+  f64.const 0
+  local.set $1
+  local.get $0
+  i32.load
+  local.set $2
+  block $break|0
+   block
+    i32.const 0
+    local.set $3
+    block $~lib/array/Array<Point>#get:length|inlined.0 (result i32)
+     local.get $2
+     local.set $4
+     local.get $4
+     i32.load offset=4
+    end
+    local.set $4
+   end
+   loop $repeat|0
+    local.get $3
+    local.get $4
+    i32.lt_u
+    i32.eqz
+    br_if $break|0
+    block
+     local.get $2
+     local.get $3
+     call $~lib/array/Array<Point>#__get
+     local.set $5
+     local.get $5
+     f64.load
+     local.set $6
+     local.get $5
+     f64.load offset=8
+     local.set $7
+     local.get $5
+     f64.load offset=16
+     local.set $8
+     local.get $5
+     f64.load offset=24
+     local.set $9
+     local.get $5
+     f64.load offset=32
+     local.set $10
+     local.get $1
+     f64.const 0.5
+     local.get $10
+     f64.mul
+     local.get $8
+     local.get $8
+     f64.mul
+     local.get $9
+     local.get $9
+     f64.mul
+     f64.add
+     f64.mul
+     f64.add
+     local.set $1
+     block $break|1
+      local.get $3
+      i32.const 1
+      i32.add
+      local.set $11
+      loop $repeat|1
+       local.get $11
+       local.get $4
+       i32.lt_u
+       i32.eqz
+       br_if $break|1
+       block
+        local.get $2
+        local.get $11
+        call $~lib/array/Array<Point>#__get
+        local.set $12
+        local.get $6
+        local.get $12
+        f64.load
+        f64.sub
+        local.set $13
+        local.get $7
+        local.get $12
+        f64.load offset=8
+        f64.sub
+        local.set $14
+        block $~lib/math/NativeMath.sqrt|inlined.0 (result f64)
+         local.get $13
+         local.get $13
+         f64.mul
+         local.get $14
+         local.get $14
+         f64.mul
+         f64.add
+         local.set $15
+         local.get $15
+         f64.sqrt
+        end
+        local.set $15
+        local.get $1
+        local.get $10
+        local.get $12
+        f64.load offset=32
+        f64.mul
+        local.get $15
+        f64.div
+        f64.sub
+        local.set $1
+       end
+       local.get $11
+       i32.const 1
+       i32.add
+       local.set $11
+       br $repeat|1
+       unreachable
+      end
+      unreachable
+     end
+    end
+    local.get $3
+    i32.const 1
+    i32.add
+    local.set $3
+    br $repeat|0
+    unreachable
+   end
+   unreachable
+  end
+  local.get $1
+ )
+ (func $assembly/index/init (; 18 ;) (type $F) (result f64)
   (local $0 i32)
   (local $1 f64)
   (local $2 f64)
@@ -2217,41 +2393,10 @@
   local.get $0
   call $assembly/index/System#constructor
   global.set $assembly/index/system
+  global.get $assembly/index/system
+  call $assembly/index/System#energy
  )
- (func $~lib/array/Array<Point>#__get (; 17 ;) (type $iii) (param $0 i32) (param $1 i32) (result i32)
-  (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  local.get $0
-  i32.load
-  local.set $2
-  local.get $1
-  local.get $2
-  i32.load
-  i32.const 2
-  i32.shr_u
-  i32.lt_u
-  if (result i32)
-   local.get $2
-   local.set $3
-   local.get $1
-   local.set $4
-   i32.const 0
-   local.set $5
-   local.get $3
-   local.get $4
-   i32.const 2
-   i32.shl
-   i32.add
-   local.get $5
-   i32.add
-   i32.load offset=8
-  else   
-   unreachable
-  end
- )
- (func $~lib/array/Array<Point>#__unchecked_get (; 18 ;) (type $iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/array/Array<Point>#__unchecked_get (; 19 ;) (type $iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -2271,7 +2416,7 @@
   i32.add
   i32.load offset=8
  )
- (func $assembly/index/System#advance (; 19 ;) (type $iFi) (param $0 i32) (param $1 f64) (result i32)
+ (func $assembly/index/System#advance (; 20 ;) (type $iFi) (param $0 i32) (param $1 f64) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -2293,7 +2438,7 @@
   local.get $0
   i32.load
   local.set $2
-  block $~lib/array/Array<Point>#get:length|inlined.0 (result i32)
+  block $~lib/array/Array<Point>#get:length|inlined.1 (result i32)
    local.get $2
    local.set $3
    local.get $3
@@ -2364,7 +2509,7 @@
         f64.mul
         f64.add
         local.set $15
-        block $~lib/math/NativeMath.sqrt|inlined.0 (result f64)
+        block $~lib/math/NativeMath.sqrt|inlined.1 (result f64)
          local.get $15
          local.set $16
          local.get $16
@@ -2457,149 +2602,6 @@
    unreachable
   end
   local.get $0
- )
- (func $assembly/index/System#energy (; 20 ;) (type $iF) (param $0 i32) (result f64)
-  (local $1 f64)
-  (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  (local $6 f64)
-  (local $7 f64)
-  (local $8 f64)
-  (local $9 f64)
-  (local $10 f64)
-  (local $11 i32)
-  (local $12 i32)
-  (local $13 f64)
-  (local $14 f64)
-  (local $15 f64)
-  f64.const 0
-  local.set $1
-  local.get $0
-  i32.load
-  local.set $2
-  block $break|0
-   block
-    i32.const 0
-    local.set $3
-    block $~lib/array/Array<Point>#get:length|inlined.1 (result i32)
-     local.get $2
-     local.set $4
-     local.get $4
-     i32.load offset=4
-    end
-    local.set $4
-   end
-   loop $repeat|0
-    local.get $3
-    local.get $4
-    i32.lt_u
-    i32.eqz
-    br_if $break|0
-    block
-     local.get $2
-     local.get $3
-     call $~lib/array/Array<Point>#__get
-     local.set $5
-     local.get $5
-     f64.load
-     local.set $6
-     local.get $5
-     f64.load offset=8
-     local.set $7
-     local.get $5
-     f64.load offset=16
-     local.set $8
-     local.get $5
-     f64.load offset=24
-     local.set $9
-     local.get $5
-     f64.load offset=32
-     local.set $10
-     local.get $1
-     f64.const 0.5
-     local.get $10
-     f64.mul
-     local.get $8
-     local.get $8
-     f64.mul
-     local.get $9
-     local.get $9
-     f64.mul
-     f64.add
-     f64.mul
-     f64.add
-     local.set $1
-     block $break|1
-      local.get $3
-      i32.const 1
-      i32.add
-      local.set $11
-      loop $repeat|1
-       local.get $11
-       local.get $4
-       i32.lt_u
-       i32.eqz
-       br_if $break|1
-       block
-        local.get $2
-        local.get $11
-        call $~lib/array/Array<Point>#__get
-        local.set $12
-        local.get $6
-        local.get $12
-        f64.load
-        f64.sub
-        local.set $13
-        local.get $7
-        local.get $12
-        f64.load offset=8
-        f64.sub
-        local.set $14
-        block $~lib/math/NativeMath.sqrt|inlined.1 (result f64)
-         local.get $13
-         local.get $13
-         f64.mul
-         local.get $14
-         local.get $14
-         f64.mul
-         f64.add
-         local.set $15
-         local.get $15
-         f64.sqrt
-        end
-        local.set $15
-        local.get $1
-        local.get $10
-        local.get $12
-        f64.load offset=32
-        f64.mul
-        local.get $15
-        f64.div
-        f64.sub
-        local.set $1
-       end
-       local.get $11
-       i32.const 1
-       i32.add
-       local.set $11
-       br $repeat|1
-       unreachable
-      end
-      unreachable
-     end
-    end
-    local.get $3
-    i32.const 1
-    i32.add
-    local.set $3
-    br $repeat|0
-    unreachable
-   end
-   unreachable
-  end
-  local.get $1
  )
  (func $assembly/index/step (; 21 ;) (type $F) (result f64)
   global.get $assembly/index/system

@@ -93,12 +93,22 @@ void  init(int argc, char ** argv) {
   time_t t;
   srand((unsigned) time(&t));
 
+  float ox = 0.0;
+  float oy = 0.0;
+  float m = 5.0;
+  float add = 1.0;
+
   for (int i = 0; i < N; i ++) {
-    self->bodies[i].x = (double)rand() / RAND_MAX;
-    self->bodies[i].y = (double)rand() / RAND_MAX;
+    self->bodies[i].x = ox;
+    self->bodies[i].y = oy;
     self->bodies[i].vx = 0.0;
     self->bodies[i].vy = 0.0;
-    self->bodies[i].mass = 5.0;
+    self->bodies[i].mass = m;
+
+    if (i % 10 == 0) {
+      oy += 10.0; ox = 0.0;
+    }
+    ox += add;
   }
 }
 
@@ -110,14 +120,18 @@ void  step() {
   //return energy(&G);
 }
 
+float  e() {
+  //printf("step called\n");
+  return energy(&G);
+  //print(&G);
+  //return energy(&G);
+}
+
 
 void  bench(int steps) {
-  printf("bench %d energy %f\n", steps, energy(&G));
   for (int i = 0; i < steps; i++) {
     advance(&G, 0.01);
-    //printf("%d\n", i);
   }
-  //printf("energy %f\n", energy(&G));
 }
 
 

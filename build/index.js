@@ -116,7 +116,6 @@ class NBodySystem {
             let m = b.mass;
             px += b.vx * m;
             py += b.vy * m;
-            pz += b.vz * m;
         }
         bodies[0].offsetMomentum(px, py, pz);
     }
@@ -132,7 +131,6 @@ class NBodySystem {
             let iz = bodyi.z;
             let bivx = bodyi.vx;
             let bivy = bodyi.vy;
-            let bivz = bodyi.vz;
             let bodyim = bodyi.mass;
             for (let j = i + 1; j < size; ++j) {
                 let bodyj = unchecked(bodies[j]);
@@ -147,17 +145,13 @@ class NBodySystem {
                 let bjm = bodyj.mass * mag;
                 bivx -= dx * bjm;
                 bivy -= dy * bjm;
-                bivz -= dz * bjm;
                 bodyj.vx += dx * bim;
                 bodyj.vy += dy * bim;
-                bodyj.vz += dz * bim;
             }
             bodyi.vx = bivx;
             bodyi.vy = bivy;
-            bodyi.vz = bivz;
             bodyi.x += dt * bivx;
             bodyi.y += dt * bivy;
-            bodyi.z += dt * bivz;
         }
     }
     energy() {
@@ -167,18 +161,15 @@ class NBodySystem {
             let bodyi = unchecked(bodies[i]);
             let ix = bodyi.x;
             let iy = bodyi.y;
-            let iz = bodyi.z;
             let vx = bodyi.vx;
             let vy = bodyi.vy;
-            let vz = bodyi.vz;
             let bim = bodyi.mass;
-            e += 0.5 * bim * (vx * vx + vy * vy + vz * vz);
+            e += 0.5 * bim * (vx * vx + vy * vy);
             for (let j = i + 1; j < size; ++j) {
                 let bodyj = unchecked(bodies[j]);
                 let dx = ix - bodyj.x;
                 let dy = iy - bodyj.y;
-                let dz = iz - bodyj.z;
-                let distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+                let distance = Math.sqrt(dx * dx + dy * dy);
                 e -= bim * bodyj.mass / distance;
             }
         }
@@ -209,6 +200,7 @@ function init() {
         ox += add;
     }
     system = new System(bodyArr);
+    return system.energy();
 }
 exports.init = init;
 function step() {
@@ -224,7 +216,7 @@ function bench(steps) {
     //log(`${system.energy()}`);
     for (let i = 0; i < steps; ++i)
         system.advance(0.01);
-    //log(`${system.energy()}`);
+    //system.energy()}`);
 }
 exports.bench = bench;
 function getBody(index) {
