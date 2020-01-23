@@ -65,7 +65,7 @@ require('../C/c.js')((nbodyC) => {
     return t;
   }
 
-  var steps = process.argv.length > 2 ? parseInt(process.argv[2], 10) : 1000;
+  var steps = process.argv.length > 2 ? parseInt(process.argv[2], 10) : 10000;
 
   function prologue(name, steps) {
     console.log("Performing " + steps + " steps (" + name + ") ...");

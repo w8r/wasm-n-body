@@ -21,7 +21,6 @@
  (global $assembly/index/SOLAR_MASS f64 (f64.const 39.47841760435743))
  (global $assembly/index/DAYS_PER_YEAR f64 (f64.const 365.24))
  (global $assembly/index/N_BODIES i32 (i32.const 1000))
- (global $assembly/index/rk (mut f32) (f32.const 0))
  (global $assembly/index/system (mut i32) (i32.const 0))
  (global $~lib/memory/HEAP_BASE i32 (i32.const 100))
  (export "memory" (memory $0))
