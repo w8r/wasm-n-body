@@ -28,7 +28,7 @@ class System {
   }
 
   energy(): float {
-    let e: float = 0.0;
+    let e: float = 0;
     let bodies = this.bodies;
 
     for (let i = 0, size = bodies.length; i < size; ++i) {
@@ -60,7 +60,7 @@ class System {
     let size = bodies.length;
 
     for (let i = 0; i < size; i++) {
-      let bodyi = unchecked(this.bodies[i]);
+      let bodyi = unchecked(bodies[i]);
       let ix = bodyi.x;
       let iy = bodyi.y;
 
@@ -99,18 +99,17 @@ class System {
 
 var system: System;
 
-export function init(): number {
+export function init(): float {
   let bodyArr = new Array<Point>(N_BODIES);
-  let ox: float = 0.0;
-  let oy: float = 0.0;
-  let m: float = 5;
-  let add: float = 1.0;
+  let ox: float = 0;
+  let oy: float = 0;
+  let m:  float = 5;
   for (let i = 0; i < N_BODIES; i++) {
     unchecked(bodyArr[i] = new Point(ox, oy, 0, 0, m));
     if (i % 10 === 0) {
       oy += 10; ox = 0;
     }
-    ox += add;
+    ox += 1;
   }
   system = new System(bodyArr);
   return system.energy();

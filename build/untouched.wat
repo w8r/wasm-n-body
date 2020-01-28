@@ -762,11 +762,10 @@
   (local $1 f64)
   (local $2 f64)
   (local $3 f64)
-  (local $4 f64)
+  (local $4 i32)
   (local $5 i32)
   (local $6 i32)
-  (local $7 i32)
-  (local $8 f64)
+  (local $7 f64)
   i32.const 0
   global.get $assembly/index/N_BODIES
   call $~lib/array/Array<assembly/index/Point>#constructor
@@ -777,19 +776,17 @@
   local.set $2
   f64.const 5
   local.set $3
-  f64.const 1
-  local.set $4
   i32.const 0
-  local.set $5
+  local.set $4
   loop $for-loop|0
-   local.get $5
+   local.get $4
    i32.const 1000
    i32.lt_s
-   local.set $6
-   local.get $6
+   local.set $5
+   local.get $5
    if
     local.get $0
-    local.get $5
+    local.get $4
     i32.const 0
     local.get $1
     local.get $2
@@ -797,9 +794,9 @@
     f64.const 0
     local.get $3
     call $assembly/index/Point#constructor
-    local.tee $7
+    local.tee $6
     call $~lib/array/Array<assembly/index/Point>#__unchecked_set
-    local.get $5
+    local.get $4
     i32.const 10
     i32.rem_s
     i32.const 0
@@ -813,32 +810,32 @@
      local.set $1
     end
     local.get $1
-    local.get $4
+    f64.const 1
     f64.add
     local.set $1
-    local.get $7
+    local.get $6
     call $~lib/rt/stub/__release
-    local.get $5
+    local.get $4
     i32.const 1
     i32.add
-    local.set $5
+    local.set $4
     br $for-loop|0
    end
   end
   i32.const 0
   local.get $0
   call $assembly/index/System#constructor
-  local.set $7
+  local.set $6
   global.get $assembly/index/system
   call $~lib/rt/stub/__release
-  local.get $7
+  local.get $6
   global.set $assembly/index/system
   global.get $assembly/index/system
   call $assembly/index/System#energy
-  local.set $8
+  local.set $7
   local.get $0
   call $~lib/rt/stub/__release
-  local.get $8
+  local.get $7
  )
  (func $assembly/index/System#advance (; 17 ;) (param $0 i32) (param $1 f64) (result i32)
   (local $2 i32)
@@ -879,8 +876,7 @@
    local.set $5
    local.get $5
    if
-    local.get $0
-    i32.load
+    local.get $2
     local.get $4
     call $~lib/array/Array<assembly/index/Point>#__unchecked_get
     local.tee $6
