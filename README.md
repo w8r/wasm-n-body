@@ -41,7 +41,7 @@ Benchmark
 - rustc 1.33.0-beta.10
 
 
-***Results: 1000 steps, 1000 bodies, 2D***
+***02.2019 Results: 1000 steps, 1000 bodies, 2D ***
 
 ```
 COLD SERIES:
@@ -66,6 +66,33 @@ Took 3043.310233ms
 Performing 1000 steps (Rust WASM) ...
 Took 3340.9384410000002ms
 
+```
+
+***01.2020 Results: 1000 steps, 1000 bodies, 2D ***
+```
+Performing 1000 steps (C WASM) ...
+Took 3043.500668ms
+Performing 1000 steps (AssemblyScript WASM) ...
+Took 8436.071153ms
+Performing 1000 steps (AssemblyScript ASMJS) ...
+Took 6020.371279ms
+Performing 1000 steps (JS) ...
+Took 3389.66475ms
+Performing 1000 steps (Rust WASM) ...
+Took 3847.223546ms
+
+WARMED UP SERIES:
+
+Performing 1000 steps (C WASM) ...
+Took 3206.852877ms
+Performing 1000 steps (AssemblyScript WASM) ...
+Took 8855.058209ms
+Performing 1000 steps (AssemblyScript ASMJS) ...
+Took 6074.051566ms
+Performing 1000 steps (JS) ...
+Took 3851.311174ms
+Performing 1000 steps (Rust WASM) ...
+Took 3893.41615ms
 ```
 
 ___* unminified___
