@@ -14,7 +14,8 @@
     "build": "npm run asbuild && npm run tsbuild && npm run rustbuild && npm run cbuild",
     "server": "http-server . -o -c-1",
     "test": "node --noliftoff --nowasm-tier-up --wasm-lazy-compilation --wasm-no-bounds-checks --expose-gc tests",
-    "testnative": "time build/nbody && time assembly/run.js"
+    "testnative": "time build/nbody && time assembly/run.js",
+    "clean": "rm -rf build/*"
   },
   "devDependencies": {
     "http-server": "^0.11.1",

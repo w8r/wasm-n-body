@@ -1,4 +1,4 @@
-const wasm = require('./nbody.js');
+const wasm = require('../build/nbody-c.js');
 
 module.exports = (cb) => {
   wasm()
