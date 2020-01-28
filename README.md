@@ -14,7 +14,8 @@ $> npm install
 
 Now, to build [assembly/index.ts](./assembly/index.ts) to an untouched and an optimized `.wasm` including their respective `.wat` representations, run:
 
-You will need emscripten installed on your machine (for C &rarr; WASM)
+**Attention:** You will need [Emscripten](https://emscripten.org/docs/getting_started/downloads.html) installed on your machine (for C &rarr; WASM)
+
 ```
 $> npm run build
 ```
