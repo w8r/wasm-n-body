@@ -95,4 +95,7 @@ Performing 1000 steps (Rust WASM) ...
 Took 3893.41615ms
 ```
 
+There's a substantial drop in AssemblyScript WASM performance.
+The code didn't change at all.
+
 ___* unminified___
