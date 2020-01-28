@@ -1,4 +1,4 @@
-import "allocator/arena";
+//import "allocator/arena";
 
 // From The Computer Language Benchmarks Game
 // http://benchmarksgame.alioth.debian.org
@@ -15,6 +15,7 @@ class Point {
   public vx: float;
   public vy: float;
   public mass: float;
+
   constructor (x:float, y: float, vx: float, vy:float, mass: float) {
     this.x = x;
     this.y = y;
@@ -169,4 +170,13 @@ export function bench(steps: u32): void {
 export function getBody(index: i32): Point | null {
   var bodies = system.bodies;
   return <u32>index < <u32>bodies.length ? bodies[index] : null;
+}
+
+export function abort(
+  message: string | null,
+  fileName: string | null,
+  lineNumber: u32,
+  columnNumber: u32
+): void {
+
 }

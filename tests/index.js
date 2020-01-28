@@ -8,7 +8,8 @@ require('../C/c.js')((nbodyC) => {
 
   // Load ASMJS version
   var src = fs.readFileSync(__dirname + "/../build/index.asm.js", "utf8")
-              .replace(/const retasmFunc[^$]*$/g, "");
+              .replace(/export [^$]*$/g, "");
+
 
   const nbodyAsmJS = eval(src + ";asmFunc")({
     Int8Array,
@@ -65,7 +66,7 @@ require('../C/c.js')((nbodyC) => {
     return t;
   }
 
-  var steps = process.argv.length > 2 ? parseInt(process.argv[2], 10) : 10000;
+  var steps = process.argv.length > 2 ? parseInt(process.argv[2], 10) : 1000;
 
   function prologue(name, steps) {
     console.log("Performing " + steps + " steps (" + name + ") ...");

@@ -1,6 +1,6 @@
 "use strict";
+//import "allocator/arena";
 Object.defineProperty(exports, "__esModule", { value: true });
-require("allocator/arena");
 const SOLAR_MASS = (4.0 * Math.PI * Math.PI);
 const DAYS_PER_YEAR = 365.24;
 const N_BODIES = 1000;
@@ -128,3 +128,6 @@ function getBody(index) {
     return index < bodies.length ? bodies[index] : null;
 }
 exports.getBody = getBody;
+function abort(message, fileName, lineNumber, columnNumber) {
+}
+exports.abort = abort;
