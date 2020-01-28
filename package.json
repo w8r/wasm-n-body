@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "asbuild:untouched": "asc assembly/index.ts -b build/untouched.wasm -t build/untouched.wat --sourceMap --debug --validate --importMemory",
-    "asbuild:optimized": "asc assembly/index.ts -b build/optimized.wasm -t build/optimized.wat -O3 --validate --noAssert --importMemory",
-    "asbuild:asmjs": "asc assembly/index.ts -a build/index.asm.js -O3 --validate --noAssert --use abort=assembly/index/abort",
+    "asbuild:untouched": "asc assembly/index.ts -b build/untouched.wasm -t build/untouched.wat --runtime stub --sourceMap --debug --validate --importMemory",
+    "asbuild:optimized": "asc assembly/index.ts -b build/optimized.wasm -t build/optimized.wat --runtime stub -O3 --validate --noAssert --importMemory",
+    "asbuild:asmjs": "asc assembly/index.ts -a build/index.asm.js --runtime stub -O3 --validate --noAssert --use abort=",
     "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized && npm run asbuild:asmjs",
     "tsbuild": "tsc -p assembly -t ES2017 -m commonjs --outDir build",
     "cbuild": "cd C && ./build.sh && ./build_native.js",
