@@ -55,6 +55,7 @@ class System {
     return e;
   }
 
+  @inline
   advance(dt: float): this {
     let bodies = this.bodies;
     let size = bodies.length;
