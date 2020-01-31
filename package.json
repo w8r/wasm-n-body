@@ -9,13 +9,14 @@
     "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized && npm run asbuild:asmjs",
     "tsbuild": "tsc -p assembly -t ES2017 -m commonjs --outDir build",
     "cbuild": "cd C && ./build.sh && ./build_native.js",
-    "rustbuild": "cd rust && cargo build --target=wasm32-unknown-unknown --release && cp target/wasm32-unknown-unknown/release/rust_nbody.wasm ../build/rust.wasm",
+    "rustbuild": "cd rust && rm -r target && cargo build --release && cargo build --target=wasm32-unknown-unknown --release && cp target/wasm32-unknown-unknown/release/rust_nbody.wasm ../build/rust.wasm",
+    "wasmpackbuild": "cd wasm-pack && rm -r target &&  cargo build --release && wasm-pack build && cp pkg/rust_nbody_wasmpack_bg.wasm ../build/rust_nbody_wasmpack_bg.wasm",
+    "browserbuild": "node build_browser_version.js",
     "clean-asm": "sed -i '' 1d build/index.asm.js ",
-    "build": "npm run asbuild && npm run tsbuild && npm run rustbuild && npm run cbuild",
+    "build": "npm run asbuild && npm run tsbuild && npm run rustbuild && npm run wasmpackbuild && npm run cbuild && npm run browserbuild",
     "server": "http-server . -o -c-1",
     "test": "node --noliftoff --nowasm-tier-up --wasm-lazy-compilation --wasm-no-bounds-checks --expose-gc tests",
-    "testnative": "time build/nbody && time assembly/run.js",
-    "clean": "rm -rf build/*"
+    "testnative": "echo \"C\" && time build/nbody && echo \"\nJS\" &&time assembly/run.js && echo \"\nRust raw\" && time rust/target/release/rust_nbody && echo \"\nRust wasm-pack\" && time wasm-pack/target/release/rust_nbody_wasmpack"
   },
   "devDependencies": {
     "http-server": "^0.11.1",

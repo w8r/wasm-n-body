@@ -5,7 +5,7 @@ authors = ["MaxGraey <maxgraey@gmail.com>"]
 
 [lib]
 path       = "src/lib.rs"
-crate-type = ["cdylib"]
+crate-type = ["cdylib", 'bin']
 
 [profile.release]
 lto = true

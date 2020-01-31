@@ -334,3 +334,10 @@ fn shift_mut_ref<'a, T>(r: &mut &'a mut [T]) -> Option<&'a mut T> {
   *r = t;
   Some(&mut h[0])
 }
+
+fn main() {
+  unsafe {
+    init();
+    bench(1000);
+  }
+}

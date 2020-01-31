@@ -13,7 +13,6 @@ readFile(path.join(__dirname, 'nbody.c'), 'utf8', (err, src) => {
     if (err) throw err;
     const target = path.join(__dirname, '../build/nbody');
     const source = path.join(__dirname, './nbody_native.c');
-    console.log(`gcc -o ${target} ${source} -O3`);
     exec(`gcc -o ${target} ${source} -O3`, (err, res) => {
       if (err) throw err;
       console.log('build/nbody compiled');
