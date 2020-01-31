@@ -4,7 +4,7 @@ const mappings = [
     {
         title: 'JS version',
         filename: 'index', wrapperCode: (src) => `
-    function JSwrapper(require, exports, unchecked) {
+    function JSwrapper(require, exports, unchecked, inline) {
         ${src}
         return exports;
     }

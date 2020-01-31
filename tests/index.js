@@ -34,7 +34,8 @@ const nbodyRS = require("../rust/index.js");
     const scopeJS = {
       require:   () => {},
       exports:   {},
-      unchecked: expr => expr
+      unchecked: expr => expr,
+      inline: expr => expr
     };
   
     const nbodyJS = new Function(

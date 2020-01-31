@@ -132,7 +132,7 @@
     // test code
     async function runTests() {
 
-      const nbodyJS = JSwrapper(() => { }, {}, _ => _);
+      const nbodyJS = JSwrapper(() => { }, {}, _ => _, _ => _);
       const nbodyRS = await getRustWASM();
       const nbodyRS2 = await getRustWASMWebPack();
       const nbodyAS = await getAssemblyScriptWASM();
