@@ -19,7 +19,7 @@
     "testnative": "echo \"C\" && time build/nbody && echo \"\nJS\" &&time assembly/run.js && echo \"\nRust raw\" && time rust/target/release/rust_nbody && echo \"\nRust wasm-pack\" && time wasm-pack/target/release/rust_nbody_wasmpack"
   },
   "devDependencies": {
-    "http-server": "^0.11.1",
+    "http-server": "^0.11.2",
     "reify": "^0.18.1",
     "typescript": "^3.2.2"
   },
